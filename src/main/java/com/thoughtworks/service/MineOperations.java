@@ -2,7 +2,6 @@ package com.thoughtworks.service;
 
 import com.thoughtworks.model.Mine;
 import com.thoughtworks.model.MineField;
-import com.thoughtworks.model.Player;
 import com.thoughtworks.model.Point;
 
 /**
@@ -18,11 +17,18 @@ public class MineOperations {
         this.playerOperations = playerOperations;
     }
 
-    public boolean playerChance(Point point){
-        mineField.getFieldArea()[point.getX()][point.getY()] = "O";
+    public boolean playerChance(Point point, String inputString){
 
-        //Check for Matching Mine
-        boolean matchFound = checkForMatchingMine(point);
+        boolean matchFound = false;
+        if(inputString.contains("o")){
+            playerOperations.open(mineField, point);
+            //Check for Matching Mine
+            matchFound = checkForMatchingMine(point);
+        }
+        else if(inputString.contains("f")){
+            playerOperations.flag(mineField, point);
+        }
+
 
         if(matchFound){
             playerOperations.getPlayer().setStatus(false);
@@ -44,7 +50,7 @@ public class MineOperations {
         {
             for(int row = 0; row<mineField.getFieldArea().length; row++)
             {
-                if("x".equals(mineField.getFieldArea()[row][col])){
+                if("x".equals(mineField.getFieldArea()[row][col]) || "f".equals(mineField.getFieldArea()[row][col])){
                     return false;
                 }
             }
@@ -75,7 +81,7 @@ public class MineOperations {
             for(int row = 0; row < mineField.getFieldArea().length; row++)
             {
 
-                System.out.print(mineField.getFieldArea()[row][col] + " ");
+                System.out.print(mineField.getFieldArea()[col][row] + " ");
             }
 
             System.out.print("\n");

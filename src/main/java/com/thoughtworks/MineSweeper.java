@@ -46,20 +46,21 @@ public class MineSweeper
 
         System.out.println("The Game starts from here");
 
-        comment = "Enter a selected location in format 0,0";
+        comment = "Enter a selected location in format o(0,0) or f(0,0)";
 
         boolean noFurtherChance = false;
         while (!noFurtherChance) {
+            mineOperations.printMineField();
             String selectedLocation = getUserInput(comment);
             String[] strings = selectedLocation.split(",");
-            noFurtherChance = mineOperations.playerChance(new Point(strings[0], strings[1]));
+            noFurtherChance = mineOperations.playerChance(new Point(strings[0].split("()")[2], strings[1].replace(")", "")), selectedLocation);
             if (noFurtherChance) {
                 break;
             }
         }
 
         if(mineField.won()){
-            System.out.println("Player looses'");
+            System.out.println("Player looses");
         }
         else if(player.won()){
             System.out.println("Player wins");

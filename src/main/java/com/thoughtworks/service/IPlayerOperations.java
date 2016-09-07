@@ -1,5 +1,6 @@
 package com.thoughtworks.service;
 
+import com.thoughtworks.model.MineField;
 import com.thoughtworks.model.Player;
 import com.thoughtworks.model.Point;
 
@@ -9,9 +10,9 @@ import com.thoughtworks.model.Point;
 public interface IPlayerOperations {
 
 
-    Point open(int x, int y);
+    void open(MineField point, Point point1);
 
-    Point flag (int x, int y);
+    void flag(MineField mineField, Point point);
 
     Player getPlayer();
 
