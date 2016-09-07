@@ -50,7 +50,7 @@ public class MineOperations {
         {
             for(int row = 0; row<mineField.getFieldArea().length; row++)
             {
-                if("x".equals(mineField.getFieldArea()[row][col]) || "f".equals(mineField.getFieldArea()[row][col])){
+                if("x".equals(mineField.getFieldArea()[row][col])){
                     return false;
                 }
             }

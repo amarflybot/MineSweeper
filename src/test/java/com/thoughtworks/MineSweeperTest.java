@@ -65,7 +65,7 @@ public class MineSweeperTest{
         {
             for(int row = 0; row<mineField.getFieldArea().length; row++)
             {
-                noFurtherChance = mineOperations.playerChance(new Point(row, col), "");
+                noFurtherChance = mineOperations.playerChance(new Point(row, col), "o(0,0)");
                 if(noFurtherChance){
                     break;
                 }
